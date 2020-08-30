@@ -472,38 +472,128 @@ label.margin-toggle:not(.sidenote-number) {
     }
 }
 
-.sidenav {
-  height: 100%; /* Full-height: remove this if you want "auto" height */
-  width: 220px; /* Set the width of the sidebar */
-  position: fixed; /* Fixed Sidebar (stay in place on scroll) */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: -110px;
-  background-color: #fffff8;
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 20px;
+/* Desktop */
+@media only screen and (min-device-width: 480px) {
+	.topnav {visibility: hidden;}
+
+	.sidenav {
+		height: 100%;
+		width: 220px;
+		position: fixed;
+		z-index: 1;
+		top: 0;
+		left: -110px;
+		background-color: #fffff8;
+		overflow-x: hidden;
+		padding-top: 20px;
+	}
+
+	.sidenav a {
+		position: relative;
+		left: -20px;
+		transition: 0.3s;
+		padding: 6px 8px 6px 32px;
+		text-decoration: none;
+		font-size: 25px;
+		color: #111111;
+		display: block;
+		width: 140px;
+		text-align: right;
+	}
+
+	.sidenav a:hover {
+		left: 80px;
+	}
 }
 
-/* The navigation menu links */
-.sidenav a {
-  position: relative;
-  left: -20px; /* Position them outside of the screen */
-  transition: 0.3s; /* Add transition on hover */
-  padding: 6px 8px 6px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #111111;
-  display: block;
-  width: 140px;
-  text-align: right;
+
+/* Phones */
+@media only screen and (max-device-width: 480px) {
+	.sidenav {visibility: hidden;}
+
+	.topnav {
+		margin: auto;
+  		width: 100%;
+		height: 6%;
+  		position: fixed;
+  		z-index: 1;
+  		top: 0;
+  		background-color: #fffff8;
+  		overflow-x: hidden;
+  		padding-top: 20px;
+  	}
+
+  	.topnav a {
+		background: none;
+		text-shadow: none;
+  		position: relative;
+		padding-left: 5%;
+		padding-right: 5%;
+  		text-decoration: none;
+  		font-size: 25px;
+  		color: #111111;
+  		display: inline-block;
+  		text-align: center;
+  	}
+
+	.topnav hr {
+		position: fixed;
+		left: 0;
+		top: .topnav.height;
+		padding: 0;
+	}
 }
 
-.sidenav a:hover {
-	left: 80px;
+/* Some annoying phones in landscape */
+@media only screen and (min-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+	body {
+	    width: 95%;
+	    margin-left: auto;
+	    margin-right: auto;
+	    padding-left: 5%;
+	    font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+	    background-color: #fffff8;
+	    color: #111;
+	    max-width: 60%;
+	    counter-reset: sidenote-counter;
+		text-align: justify;
+	}
 }
 
-/* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+/* Tablets */
+@media only screen and (min-device-width: 1000px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: landscape) {
+	body {
+	    width: 85.5%;
+	    margin-left: auto;
+	    margin-right: auto;
+	    padding-left:12.5%;
+	    font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+	    background-color: #fffff8;
+	    color: #111;
+	    max-width: 87.5%;
+	    counter-reset: sidenote-counter;
+		text-align: justify;
+	}
+}
+
+/* Tablets in portait */
+@media only screen and (min-device-width: 750px)
+  and (-webkit-min-device-pixel-ratio: 2)
+  and (orientation: portrait) {
+	body {
+	    width: 85%;
+	    margin-left: auto;
+	    margin-right: auto;
+	    padding-left:15%;
+	    font-family: et-book, Palatino, "Palatino Linotype", "Palatino LT STD", "Book Antiqua", Georgia, serif;
+	    background-color: #fffff8;
+	    color: #111;
+	    max-width: 87.5%;
+	    counter-reset: sidenote-counter;
+		text-align: justify;
+	}
 }
