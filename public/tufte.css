@@ -472,6 +472,94 @@ label.margin-toggle:not(.sidenote-number) {
     }
 }
 
+.project-grid {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	grid-column-gap: 50px;
+	grid-row-gap: 100px;
+}
+
+.project {
+	background-color: #eeeee8;
+	border: 1px solid #dddddd;
+	border-radius: 5px;
+	text-align: left;
+	height: 300px;
+	width: 400px;
+}
+
+.project hr {
+	position: relative;
+	width: 100%;
+	left: 0%;
+	bottom: 50px;
+}
+
+.project-title {
+	position: relative;
+	left: 10px;
+	top: 8px;
+	font-size: 24px;
+	padding: 10px;
+}
+
+.project-title code {
+	font-size: 24px;
+}
+
+.project-tags {
+	display: grid;
+	grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+	position: relative;
+	bottom: 58px;
+	padding-left: 15px;
+	font-size: 22px;
+}
+
+.project img {
+	object-fit: contain;
+}
+
+.tag {
+  position: relative;
+  display: inline-block;
+}
+
+.tag a {
+	background: none;
+	text-shadow: none;
+}
+
+.tag .tooltiptext {
+  visibility: hidden;
+  background-color: #111111;
+  color: #eeeee8;
+  text-align: center;
+  border-radius: 5px;
+  padding: 10px;
+  position: absolute;
+  z-index: 1;
+  top: 150%;
+  left: 50%;
+  margin-left: -60px;
+  font-size: 18px;
+}
+
+.tag .tooltiptext::after {
+  content: "";
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: 0px;
+  border-width: 5px;
+  border-style: solid;
+  border-color: transparent transparent black transparent;
+}
+
+.tag:hover .tooltiptext {
+  visibility: visible;
+}
+
 /* Desktop */
 @media only screen and (min-device-width: 480px) {
 	.topnav {visibility: hidden;}
@@ -508,7 +596,7 @@ label.margin-toggle:not(.sidenote-number) {
 
 
 /* Phones */
-@media only screen and (max-device-width: 480px) {
+@media only screen and (max-device-width: 450px) {
 	.sidenav {visibility: hidden;}
 
 	.topnav {
@@ -542,6 +630,31 @@ label.margin-toggle:not(.sidenote-number) {
 		top: .topnav.height;
 		padding: 0;
 	}
+
+	.project-grid {
+		display: grid;
+		grid-template-columns: auto;
+		grid-row-gap: 100px;
+	}
+
+	.project {
+		background-color: #eeeee8;
+		border: 1px solid #dddddd;
+		border-radius: 5px;
+		text-align: left;
+		height: 225px;
+		width: 300px;
+	}
+
+	.project-tags {
+		display: grid;
+		grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+		position: relative;
+		bottom: 62px;
+		padding-left: 15px;
+		font-size: 18px;
+	}
+
 }
 
 /* Some annoying phones in landscape */
@@ -559,6 +672,30 @@ label.margin-toggle:not(.sidenote-number) {
 	    max-width: 60%;
 	    counter-reset: sidenote-counter;
 		text-align: justify;
+	}
+
+	.project-grid {
+		display: grid;
+		grid-template-columns: auto;
+		grid-row-gap: 100px;
+	}
+
+	.project {
+		background-color: #eeeee8;
+		border: 1px solid #dddddd;
+		border-radius: 5px;
+		text-align: left;
+		height: 225px;
+		width: 300px;
+	}
+
+	.project-tags {
+		display: grid;
+		grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+		position: relative;
+		bottom: 62px;
+		padding-left: 15px;
+		font-size: 18px;
 	}
 }
 
@@ -578,6 +715,30 @@ label.margin-toggle:not(.sidenote-number) {
 	    counter-reset: sidenote-counter;
 		text-align: justify;
 	}
+
+		.project-grid {
+			display: grid;
+			grid-template-columns: auto auto;
+			grid-row-gap: 100px;
+		}
+
+		.project {
+			background-color: #eeeee8;
+			border: 1px solid #dddddd;
+			border-radius: 5px;
+			text-align: left;
+			height: 225px;
+			width: 300px;
+		}
+
+		.project-tags {
+			display: grid;
+			grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+			position: relative;
+			bottom: 62px;
+			padding-left: 15px;
+			font-size: 18px;
+		}
 }
 
 /* Tablets in portait */
@@ -596,4 +757,28 @@ label.margin-toggle:not(.sidenote-number) {
 	    counter-reset: sidenote-counter;
 		text-align: justify;
 	}
+
+		.project-grid {
+			display: grid;
+			grid-template-columns: auto;
+			grid-row-gap: 100px;
+		}
+
+		.project {
+			background-color: #eeeee8;
+			border: 1px solid #dddddd;
+			border-radius: 5px;
+			text-align: left;
+			height: 225px;
+			width: 300px;
+		}
+
+		.project-tags {
+			display: grid;
+			grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto auto;
+			position: relative;
+			bottom: 62px;
+			padding-left: 15px;
+			font-size: 18px;
+		}
 }
