@@ -590,6 +590,61 @@ label.margin-toggle:not(.sidenote-number) {
 	text-align: center;
 }
 
+.class-grid {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	column-gap: 50px;
+	row-gap: 50px;
+}
+
+.class-grid a {
+	background: none;
+	text-shadow: none;
+	width: 400px;
+	height: 200px;
+}
+
+.class {
+	background-color: #eeeee8;
+	border-radius: 5px;
+	text-align: left;
+	border: 1px solid #ccc;
+	width: inherit;
+	height: inherit;
+	position: relative;
+}
+
+.class img {
+	width: inherit;
+	height: inherit;
+	position: absolute;
+	top: 0;
+	object-fit: scale-down;
+}
+
+.class-title {
+	position: relative;
+	left: 0;
+	top: 0;
+	display: grid;
+	grid-template-columns: auto auto;
+	font-size: 24px;
+	padding: 15px;
+}
+
+.class hr {
+	position: relative;
+	top: -8%;
+}
+
+.class-number {
+	text-align: left;
+}
+
+.class-name {
+	text-align: right;
+}
+
 /* Desktop */
 @media only screen and (min-device-width: 480px) {
 	.topnav {visibility: hidden;}
