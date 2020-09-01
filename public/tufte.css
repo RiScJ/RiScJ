@@ -583,6 +583,12 @@ label.margin-toggle:not(.sidenote-number) {
   object-fit: contain;
 }
 
+.gallery-item video {
+	width: inherit;
+	height: inherit;
+	object-fit: contain;
+}
+
 .desc {
 	position: relative;
 	left: 0;
