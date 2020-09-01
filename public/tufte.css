@@ -748,6 +748,11 @@ label.margin-toggle:not(.sidenote-number) {
 		width: 300px;
 	}
 
+	.class-grid a {
+		width: 300px;
+		height: 225px;
+	}
+
 }
 
 /* Some annoying phones in landscape */
