@@ -56,7 +56,7 @@ body {
     color: #111;
     max-width: 1400px;
     counter-reset: sidenote-counter;
-	text-align: justify;
+	text-align: left;
 }
 
 h1 {
@@ -560,6 +560,36 @@ label.margin-toggle:not(.sidenote-number) {
   visibility: visible;
 }
 
+.gallery {
+	display: grid;
+	grid-template-columns: auto auto auto;
+	column-gap: 50px;
+	row-gap: 50px;
+}
+
+.gallery-item {
+	background-color: #eeeee8;
+	border-radius: 5px;
+	text-align: left;
+	width: 400px;
+    border: 1px solid #ccc;
+}
+
+.gallery-item:hover {
+
+}
+
+.gallery-item img {
+  object-fit: contain;
+}
+
+.desc {
+	position: relative;
+	left: 0;
+	top: 0;
+	text-align: center;
+}
+
 /* Desktop */
 @media only screen and (min-device-width: 480px) {
 	.topnav {visibility: hidden;}
@@ -655,6 +685,14 @@ label.margin-toggle:not(.sidenote-number) {
 		font-size: 18px;
 	}
 
+	.gallery {
+		grid-template-columns: auto;
+	}
+
+	.gallery-item {
+		width: 300px;
+	}
+
 }
 
 /* Some annoying phones in landscape */
@@ -671,7 +709,7 @@ label.margin-toggle:not(.sidenote-number) {
 	    color: #111;
 	    max-width: 60%;
 	    counter-reset: sidenote-counter;
-		text-align: justify;
+		text-align: left;
 	}
 
 	.project-grid {
@@ -697,6 +735,10 @@ label.margin-toggle:not(.sidenote-number) {
 		padding-left: 15px;
 		font-size: 18px;
 	}
+
+	.gallery {
+		grid-template-columns: auto;
+	}
 }
 
 /* Tablets */
@@ -713,7 +755,7 @@ label.margin-toggle:not(.sidenote-number) {
 	    color: #111;
 	    max-width: 87.5%;
 	    counter-reset: sidenote-counter;
-		text-align: justify;
+		text-align: left;
 	}
 
 		.project-grid {
@@ -739,6 +781,10 @@ label.margin-toggle:not(.sidenote-number) {
 			padding-left: 15px;
 			font-size: 18px;
 		}
+
+		.gallery {
+			grid-template-columns: auto auto;
+		}
 }
 
 /* Tablets in portait */
@@ -755,7 +801,7 @@ label.margin-toggle:not(.sidenote-number) {
 	    color: #111;
 	    max-width: 87.5%;
 	    counter-reset: sidenote-counter;
-		text-align: justify;
+		text-align: left;
 	}
 
 		.project-grid {
@@ -781,4 +827,21 @@ label.margin-toggle:not(.sidenote-number) {
 			padding-left: 15px;
 			font-size: 18px;
 		}
+
+		.gallery {
+			grid-template-columns: auto;
+		}
+}
+
+.project-menu {
+	display: grid;
+	grid-template-columns: auto auto auto;
+}
+
+.project-menu h2 {
+
+}
+
+body hr {
+	width: 100%;
 }
