@@ -480,6 +480,7 @@ label.margin-toggle:not(.sidenote-number) {
 }
 
 .project {
+	position: relative;
 	background-color: #eeeee8;
 	border: 1px solid #dddddd;
 	border-radius: 5px;
@@ -498,9 +499,11 @@ label.margin-toggle:not(.sidenote-number) {
 .project-title {
 	position: relative;
 	left: 10px;
+	height: 40px;
 	top: 8px;
 	font-size: 24px;
-	padding: 10px;
+	padding: 5px;
+	background: none;
 }
 
 .project-title code {
@@ -517,6 +520,7 @@ label.margin-toggle:not(.sidenote-number) {
 }
 
 .project img {
+	position: relative;
 	object-fit: contain;
 }
 
@@ -528,6 +532,48 @@ label.margin-toggle:not(.sidenote-number) {
 .tag a {
 	background: none;
 	text-shadow: none;
+}
+
+.elink {
+	position: absolute;
+	display: inline-block;
+	right: 0;
+	padding-right: 15px;
+}
+
+.elink a {
+	background: none;
+	text-shadow: none;
+}
+
+.elink .tooltiptext {
+	visibility: hidden;
+	background-color: #111111;
+	color: #eeeee8;
+	text-align: center;
+	border-radius: 5px;
+	padding: 10px;
+	position: absolute;
+	z-index: 1;
+	top: 150%;
+	left: 50%;
+	margin-left: -60px;
+	font-size: 18px;
+}
+
+.elink .tooltiptext::after {
+	content: "";
+	position: absolute;
+	bottom: 100%;
+	left: 50%;
+	margin-left: 0px;
+	border-width: 5px;
+	border-style: solid;
+	border-color: transparent transparent black transparent;
+}
+
+.elink:hover .tooltiptext {
+	visibility: visible;
 }
 
 .tag .tooltiptext {
