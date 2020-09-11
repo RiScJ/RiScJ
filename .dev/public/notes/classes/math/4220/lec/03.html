@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<div class="sidenav">
+		<a href="../../../../../index.html">Home &nbsp;&nbsp;<i class = "fa fa-home"></i></a>
+		<a href="../../../../../articles.html">Articles &nbsp;&nbsp;<i class = "fa fa-newspaper-o"></i></a>
+		<a href="../../../../../notes.html">Notes &nbsp;&nbsp; &nbsp;&nbsp;<i class = "fa fa-book"></i></a>
+		<a href="../../../../../projects.html">Projects &nbsp;&nbsp;<i class = "fa fa-flask"></i></a>
+		<a href="../../../../../about.html">About &nbsp;&nbsp;&nbsp;<i class = "fa fa-info-circle"></i></a>
+	</div>
+	<div class="topnav">
+		<a href="../../../../../index.html"><i class = "fa fa-home"></i></a>
+		<a href="../../../../../articles.html"><i class = "fa fa-newspaper-o"></i></a>
+		<a href="../../../../../notes.html"><i class = "fa fa-book"></i></a>
+		<a href="../../../../../projects.html"><i class = "fa fa-flask"></i></a>
+		<a href="../../../../../about.html"><i class = "fa fa-info-circle"></i></a>
+		<hr>
+	</div>
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>MATH 4220 - Lec. 3</title>
+		<link rel="stylesheet" href="../../../../../tufte.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	</head>
+
+	<body onload="ready()">
+	<article>
+		<h1>Lecture 3</h1>
+		<p class="subtitle">Vectors & Polar Forms</p>
+		<section>
+			<p>How can we take the square root of the imaginary unit? Consider the equivalent question of finding the complex number \(z\) who, when multiplied by itself, returns \(i\):\[z^2=i\] We will write \(z\) in terms of its real and imaginary components: \[z=x+iy \implies (x+iy)^2=i\] and expand: \[x^2-y^2+i~2xy=i\] Notice we now have an expression for \(i\) of form \(a+ib\), so we can see \[\begin{align}\Re[i]&=0=x^2-y^2\\\Im[i]&=1=2xy\end{align}\] which allows us to solve for \(x\) and \(y\): \[\begin{align}x&=\pm y\\ 2y^2&=1\\\implies y&=\pm\frac{\sqrt{2}}{2}\\x&=y\end{align}\]</p>
+			<p> And so we arrive at our solution<label for="math-4220-1-2-3" class="margin-toggle">&#8853;</label><input type="checkbox" id="math-4220-1-2-3" class="margin-toggle"/><span class="marginnote"><img src="../fig/1-2-3.png" alt="Fig. 1.2.3"/>
+				The two square roots of \(i\) visualized on the unit circle.</span>: \[\begin{align}\sqrt{i}=z&=x+iy\\&=\boxed{\pm\frac{\sqrt{2}}{2}\left(1+i\right)}\end{align}\]</p>
+		</section>
+		<section>
+			<h2>Vectors</h2>
+			<p>Graphically, complex addition works the same as vector addition:
+			</p>
+			<figure>
+				<img src="../fig/1-3-1.png" alt="Fig. 1.3.1">
+			</figure>
+		</section>
+		<section>
+			<h2>Polar Coordinates</h2>
+			<p>Working with complex numbers in Cartesian is tedious. We will discover that polar coordinates are a much more natural choice. How can we describe \(z\) in terms of \(r\) and \(\theta\)? In other words, how can we find:\[z(r(x,y),\theta(x,y)) =~?\] Shown graphically:</p>
+			<figure>
+
+			</figure>
+			<p>Trigonometry makes this quite easy: \[\begin{align}r&=\sqrt{x^2+y^2}\\\theta&=\tan^{-1}\left(\frac{y}{x}\right)\end{align}\] Notice our expression for \(r\) is equivalent to \(|z|\), the modulus<label for="math-4220-lec-03-sn-01" class="margin-toggle sidenote-number"></label><input type="checkbox" id="math-4220-lec-03-sn-01" class="margin-toggle"/><span class="sidenote">Also called the <em>magnitude</em></span> of \(z\). One may then expect that our expression for \(\theta\) ought also be named, and indeed it is — the function \(\arg(z)=\theta\) is called the <em>argument</em><label for="math-4220-lec-03-sn-02" class="margin-toggle sidenote-number"></label><input type="checkbox" id="math-4220-lec-03-sn-02" class="margin-toggle"/><span class="sidenote">Also called the <em>phase</em></span> of \(z\).</p>
+			<p>Now we can express \(x\) and \(y\) in terms of \(r\) and \(\theta\):\[\begin{align}x&=r\cos\theta\\ y&=r\sin\theta\\\implies z&=x+iy=r\cos\theta+i~r\sin\theta\\ &=r\left[\cos\theta+i\sin\theta\right]\\ &=re^{i\theta}\end{align}\] Beauty.</p>
+			<h3><u>Theorem</u>: Euler's formula</h3>
+			<p>\[e^{i\theta}=\cos\theta+i\sin\theta\]<label for="math-4220-mn-cis" class="margin-toggle">&#8853;</label><input type="checkbox" id="math-4220-mn-cis" class="margin-toggle"/><span class="marginnote">
+				When taken as a function, the expression is sometimes denoted \(\mathrm{cis}~\theta\), from "<u>c</u>osine plus <u>i</u> <u>s</u>ine"</span></p>
+				<p><em>Definition.</em> The sets \(\mathbb{E}\) and \(\mathbb{O}\) denote the even and odd naturals, respectively:
+				\[
+				\begin{align}
+				\mathbb{E} &= \{n\in\mathbb{N}~|~(\exists k)[k\in\mathbb{N}\land n = 2k]\}\\
+				\mathbb{O} &= \mathbb{N}\backslash\mathbb{E}
+				\end{align}
+				\]
+				</p>
+				<p><em>Proof.</em> Using power series:<label for="math-4220-mn-recall-01" class="margin-toggle">&#8853;</label><input type="checkbox" id="math-4220-mn-recall-01" class="margin-toggle"/><span class="marginnote">
+					\[\boxed{\begin{align}\mathbf{Recall.}\\\\
+					e^x &= \sum_{n=0}^{\infty}\frac{x^n}{n!} \\\\
+					\cos x &= \sum_{n=0}^{\infty}\frac{(-1)^nx^{2n}}{2n!} \\\\
+					\sin x &= \sum_{n=0}^{\infty}(-1)^n\frac{x^{2n+1}}{(2n+1)!}~~~~~\\&
+					\end{align}}\]</span>
+				</p>
+				<p>
+				\[
+				\begin{align}
+				e^{i\theta}&=\sum_{n=0}^{\infty}\frac{(i\theta)^n}{n!} = \sum_{n=0}^{\infty}\frac{i^n\theta^n}{n!}\\
+				&= \sum_{n\in\mathbb{E}}\frac{i^n\theta^n}{n!}+\sum_{n\in\mathbb{O}}\frac{i^n\theta^n}{n!}\\
+				&= \sum_{m=0}^\infty\frac{i^{2m}\theta^{2m}}{2m!}+\sum_{m=0}^\infty\frac{i^{2m+1}\theta^{2m+1}}{(2m+1)!}\\
+				&= \sum_{m=0}^\infty\frac{(-1)^m\theta^{2m}}{2m!} + \sum_{m=0}^\infty\frac{i(-1)^m\theta^{2m+1}}{(2m+1)!}\\
+				&= \sum_{m=0}^\infty\frac{(-1)^m\theta^{2m}}{2m!} + i\sum_{m=0}^\infty\frac{(-1)^m\theta^{2m+1}}{(2m+1)!}\\
+				&= \cos\theta + i\sin\theta~~\square
+				\end{align}
+				\]
+				</p>
+		</section>
+	</article>
+	</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.

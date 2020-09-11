@@ -697,6 +697,36 @@ label.margin-toggle:not(.sidenote-number) {
 	text-align: right;
 }
 
+.note-list {
+	display: grid;
+	grid-template-columns: auto;
+	column-gap: 50px;
+	row-gap: 0px;
+}
+
+.note {
+	display: grid;
+	grid-template-columns: 10% 70% 15%;
+	column-gap: 50px;
+}
+
+.note-number p {
+	font-size: 30px;
+}
+
+.note-desc p {
+	font-size: 28px;
+	font-style: italic;
+}
+
+.note-date p {
+	font-size: 32px;
+}
+
+.marginnote img {
+	width: 100%;
+}
+
 /* Desktop */
 @media only screen and (min-device-width: 480px) {
 	.topnav {visibility: hidden;}
@@ -805,6 +835,13 @@ label.margin-toggle:not(.sidenote-number) {
 		height: 225px;
 	}
 
+	.class-grid  {
+		display: grid;
+		grid-template-columns: auto;
+		column-gap: 50px;
+		row-gap: 50px;
+	}
+
 }
 
 /* Some annoying phones in landscape */
@@ -850,6 +887,18 @@ label.margin-toggle:not(.sidenote-number) {
 
 	.gallery {
 		grid-template-columns: auto;
+	}
+
+	.class-grid a {
+		width: 300px;
+		height: 225px;
+	}
+
+	.class-grid  {
+		display: grid;
+		grid-template-columns: auto;
+		column-gap: 50px;
+		row-gap: 50px;
 	}
 }
 
@@ -897,6 +946,18 @@ label.margin-toggle:not(.sidenote-number) {
 		.gallery {
 			grid-template-columns: auto auto;
 		}
+
+		.class-grid a {
+			width: 300px;
+			height: 225px;
+		}
+
+		.class-grid  {
+			display: grid;
+			grid-template-columns: auto auto;
+			column-gap: 50px;
+			row-gap: 50px;
+		}
 }
 
 /* Tablets in portait */
@@ -942,6 +1003,14 @@ label.margin-toggle:not(.sidenote-number) {
 
 		.gallery {
 			grid-template-columns: auto;
+		}
+
+
+		.class-grid  {
+			display: grid;
+			grid-template-columns: auto;
+			column-gap: 50px;
+			row-gap: 50px;
 		}
 }
 
