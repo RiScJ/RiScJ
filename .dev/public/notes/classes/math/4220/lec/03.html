@@ -48,12 +48,13 @@
 			<h2>Polar Coordinates</h2>
 			<p>Working with complex numbers in Cartesian is tedious. We will discover that polar coordinates are a much more natural choice. How can we describe \(z\) in terms of \(r\) and \(\theta\)? In other words, how can we find:\[z(r(x,y),\theta(x,y)) =~?\] Shown graphically:</p>
 			<figure>
-
+				<img src="../fig/1-3-2.png" alt="Fig. 1.3.2">
 			</figure>
 			<p>Trigonometry makes this quite easy: \[\begin{align}r&=\sqrt{x^2+y^2}\\\theta&=\tan^{-1}\left(\frac{y}{x}\right)\end{align}\] Notice our expression for \(r\) is equivalent to \(|z|\), the modulus<label for="math-4220-lec-03-sn-01" class="margin-toggle sidenote-number"></label><input type="checkbox" id="math-4220-lec-03-sn-01" class="margin-toggle"/><span class="sidenote">Also called the <em>magnitude</em></span> of \(z\). One may then expect that our expression for \(\theta\) ought also be named, and indeed it is — the function \(\arg(z)=\theta\) is called the <em>argument</em><label for="math-4220-lec-03-sn-02" class="margin-toggle sidenote-number"></label><input type="checkbox" id="math-4220-lec-03-sn-02" class="margin-toggle"/><span class="sidenote">Also called the <em>phase</em></span> of \(z\).</p>
 			<p>Now we can express \(x\) and \(y\) in terms of \(r\) and \(\theta\):\[\begin{align}x&=r\cos\theta\\ y&=r\sin\theta\\\implies z&=x+iy=r\cos\theta+i~r\sin\theta\\ &=r\left[\cos\theta+i\sin\theta\right]\\ &=re^{i\theta}\end{align}\] Beauty.</p>
-			<h3><u>Theorem</u>: Euler's formula</h3>
-			<p>\[e^{i\theta}=\cos\theta+i\sin\theta\]<label for="math-4220-mn-cis" class="margin-toggle">&#8853;</label><input type="checkbox" id="math-4220-mn-cis" class="margin-toggle"/><span class="marginnote">
+			&nbsp;
+			<p><em><u>Theorem</u>: Euler's formula</em>
+			\[e^{i\theta}=\cos\theta+i\sin\theta\]<label for="math-4220-mn-cis" class="margin-toggle">&#8853;</label><input type="checkbox" id="math-4220-mn-cis" class="margin-toggle"/><span class="marginnote">
 				When taken as a function, the expression is sometimes denoted \(\mathrm{cis}~\theta\), from "<u>c</u>osine plus <u>i</u> <u>s</u>ine"</span></p>
 				<p><em>Definition.</em> The sets \(\mathbb{E}\) and \(\mathbb{O}\) denote the even and odd naturals, respectively:
 				\[
@@ -82,6 +83,12 @@
 				\end{align}
 				\]
 				</p>
+				&nbsp;
+		<h3>Complex multiplication in polar form</h3>
+		<p>
+		Let us take two complex numbers \(z_1\) and \(z_2\) of the form \(z_k = r_ke^{i\theta_k}\). Their product takes the form \[z_1z_2=r_1r_2e^{i(\theta_1+\theta_2)}\]</p>
+		<p>Two important observations can be made from this result. First, when multiplying complex numbers, the modulus of the product is equal to the product of the moduli of the multiplicands: \[\left|\prod_kz_k\right|=\prod_k|z_k|\] Second, the argument of the product is equal to the sum of the arguments of the multiplicands: \[\arg \prod_kz_k = \sum_k\arg z_k\]</p>
+		<p>These properties make the multiplication of many complex numbers incredibly simple.</p>
 		</section>
 	</article>
 	</body>

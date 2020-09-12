@@ -842,6 +842,25 @@ label.margin-toggle:not(.sidenote-number) {
 		row-gap: 50px;
 	}
 
+	.note {
+		display: grid;
+		grid-template-columns: 30% 55%;
+		column-gap: 50px;
+	}
+
+	.note-number p {
+		font-size: 24px;
+	}
+
+	.note-desc p {
+		font-size: 22px;
+		font-style: italic;
+	}
+
+	.note-date p {
+		visibility: hidden;
+	}
+
 }
 
 /* Some annoying phones in landscape */
@@ -899,6 +918,25 @@ label.margin-toggle:not(.sidenote-number) {
 		grid-template-columns: auto;
 		column-gap: 50px;
 		row-gap: 50px;
+	}
+
+	.note {
+		display: grid;
+		grid-template-columns: 30% 55%;
+		column-gap: 50px;
+	}
+
+	.note-number p {
+		font-size: 24px;
+	}
+
+	.note-desc p {
+		font-size: 22px;
+		font-style: italic;
+	}
+
+	.note-date p {
+		visibility: hidden;
 	}
 }
 
@@ -958,6 +996,25 @@ label.margin-toggle:not(.sidenote-number) {
 			column-gap: 50px;
 			row-gap: 50px;
 		}
+
+		.note {
+			display: grid;
+			grid-template-columns: 15% 55% 15%;
+			column-gap: 50px;
+		}
+
+		.note-number p {
+			font-size: 24px;
+		}
+
+		.note-desc p {
+			font-size: 22px;
+			font-style: italic;
+		}
+
+		.note-date p {
+			font-size: 22px;
+		}
 }
 
 /* Tablets in portait */
@@ -1011,6 +1068,25 @@ label.margin-toggle:not(.sidenote-number) {
 			grid-template-columns: auto;
 			column-gap: 50px;
 			row-gap: 50px;
+		}
+
+		.note {
+			display: grid;
+			grid-template-columns: 15% 55% 15%;
+			column-gap: 50px;
+		}
+
+		.note-number p {
+			font-size: 24px;
+		}
+
+		.note-desc p {
+			font-size: 22px;
+			font-style: italic;
+		}
+
+		.note-date p {
+			visibility: hidden;
 		}
 }
 
