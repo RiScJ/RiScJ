@@ -905,7 +905,12 @@ label.margin-toggle:not(.sidenote-number) {
 	}
 
 	.recent-post {
-		grid-template-columns: 40% 40%;
+		grid-template-columns: auto 0%;
+	}
+
+	.recent-post-type {
+		visibility: hidden;
+		font-size: 0;
 	}
 }
 
