@@ -727,6 +727,45 @@ label.margin-toggle:not(.sidenote-number) {
 	width: 100%;
 }
 
+.recent-post-grid {
+	display: grid;
+	grid-template-columns: auto;
+	row-gap: 20px;
+}
+
+.recent-post-grid a {
+	background: none;
+	text-shadow: none;
+}
+
+.recent-post {
+	display: grid;
+	grid-template-columns: auto 20%;
+	background-color: #eeeee8;
+	border-radius: 5px;
+	text-align: left;
+	border: 1px solid #ccc;
+	width: inherit;
+	height: inherit;
+	position: relative;
+}
+
+.recent-post-type {
+	position: relative;
+	padding: 15px;
+	font-size: 18px;
+	text-align: right;
+	padding-top: 20px;
+}
+
+.recent-post-title {
+	position: relative;
+	padding: 15px;
+	font-size: 24px;
+	padding-top: 16px;
+	font-style: italic;
+}
+
 /* Desktop */
 @media only screen and (min-device-width: 480px) {
 	.topnav {visibility: hidden;}
@@ -861,6 +900,9 @@ label.margin-toggle:not(.sidenote-number) {
 		visibility: hidden;
 	}
 
+	.recent-post {
+		grid-template-columns: auto auto;
+	}
 }
 
 /* Some annoying phones in landscape */
@@ -937,6 +979,10 @@ label.margin-toggle:not(.sidenote-number) {
 
 	.note-date p {
 		visibility: hidden;
+	}
+
+	.recent-post {
+		grid-template-columns: auto auto;
 	}
 }
 
@@ -1015,6 +1061,10 @@ label.margin-toggle:not(.sidenote-number) {
 		.note-date p {
 			font-size: 22px;
 		}
+
+		.recent-post {
+			grid-template-columns: auto auto;
+		}
 }
 
 /* Tablets in portait */
@@ -1087,6 +1137,10 @@ label.margin-toggle:not(.sidenote-number) {
 
 		.note-date p {
 			visibility: hidden;
+		}
+
+		.recent-post {
+			grid-template-columns: auto auto;
 		}
 }
 
