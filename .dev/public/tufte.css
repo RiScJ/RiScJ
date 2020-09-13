@@ -905,7 +905,7 @@ label.margin-toggle:not(.sidenote-number) {
 	}
 
 	.recent-post {
-		grid-template-columns: 40% auto;
+		grid-template-columns: 40% 40%;
 	}
 }
 
