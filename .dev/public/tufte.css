@@ -740,7 +740,7 @@ label.margin-toggle:not(.sidenote-number) {
 
 .recent-post {
 	display: grid;
-	grid-template-columns: auto 20%;
+	grid-template-columns: auto; /*used to be 20% second col*/
 	background-color: #eeeee8;
 	border-radius: 5px;
 	text-align: left;
@@ -750,13 +750,13 @@ label.margin-toggle:not(.sidenote-number) {
 	position: relative;
 }
 
-.recent-post-type {
+/* .recent-post-type {
 	position: relative;
 	padding: 15px;
 	font-size: 18px;
 	text-align: right;
 	padding-top: 20px;
-}
+} */
 
 .recent-post-title {
 	position: relative;
