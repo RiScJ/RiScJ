@@ -900,8 +900,12 @@ label.margin-toggle:not(.sidenote-number) {
 		visibility: hidden;
 	}
 
+	.recent-post-grid {
+		grid-template-columns: 90%;
+	}
+
 	.recent-post {
-		grid-template-columns: auto auto;
+		grid-template-columns: 40% auto;
 	}
 }
 
