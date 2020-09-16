@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<div class="sidenav">
+		<a href="../../../../../index.html">Home &nbsp;&nbsp;<i class = "fa fa-home"></i></a>
+		<a href="../../../../../articles.html">Articles &nbsp;&nbsp;<i class = "fa fa-newspaper-o"></i></a>
+		<a href="../../../../../notes.html">Notes &nbsp;&nbsp; &nbsp;&nbsp;<i class = "fa fa-book"></i></a>
+		<a href="../../../../../projects.html">Projects &nbsp;&nbsp;<i class = "fa fa-flask"></i></a>
+		<a href="../../../../../about.html">About &nbsp;&nbsp;&nbsp;<i class = "fa fa-info-circle"></i></a>
+	</div>
+	<div class="topnav">
+		<a href="../../../../../index.html"><i class = "fa fa-home"></i></a>
+		<a href="../../../../../articles.html"><i class = "fa fa-newspaper-o"></i></a>
+		<a href="../../../../../notes.html"><i class = "fa fa-book"></i></a>
+		<a href="../../../../../projects.html"><i class = "fa fa-flask"></i></a>
+		<a href="../../../../../about.html"><i class = "fa fa-info-circle"></i></a>
+		<hr>
+	</div>
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>PHYS 3316 - Lec. 5</title>
+		<link rel="stylesheet" href="../../../../../tufte.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	</head>
+
+	<body onload="ready()">
+	<article>
+		<h1>Lecture 5</h1>
+		<p class="subtitle">Photoelectric Effect</p>
+		<section>
+			<p>Imagine a vacuum tube with two electrodes: a cathode (traditionally represented as K), and an anode (represented as A). These electrodes have some potential between them, \(V\). We can insert an ammeter to measure the current \(I\) flowing between the electrodes. One would expect to find no current flowing, and indeed that is usually the case. However, when light is shone upon the cathode, it emits electrons which make their way to the anode, producing a current.</p>
+			<figure>
+				<img src="../fig/5-1.png" alt="Fig. 5.1">
+			</figure>
+			<p>Let's call the intensity of light \(B\). For a given \(B\), how does the current through the tube vary with the voltage across the electrodes? When we conduct this experiment, we find curves like the following:</p>
+			<figure>
+				<img src="../fig/5-2.png" alt="Fig. 5.2">
+			</figure>
+			<p>Notice that when we trace these curves for different intensities of light, the shape of the curve stays essentially the same. In particular, notice that there is some potential above which the current flattens, and there is some potential below which the current is always zero.</p>
+			<p>All else being equal, notice that varying the intensity of the light does not change the potential below which the current is zero. This potential appears to be fixed, and this is an important observation. This value is called the <em>stopping potential</em>.<label for="phys-3316-lec-05-sn-01" class="margin-toggle sidenote-number"></label><input type="checkbox" id="phys-3316-lec-05-sn-01" class="margin-toggle"/><span class="sidenote">There is a maximum kinetic energy \(T_{max}\) that an ejected electron can have. Recall that an energy \(E\) may be expressed as the product of an electric charge and potential \(qV\). One possible interpretation of this is that a charge \(q\) accelerated across a potential difference \(V\) will acquire an energy \(E\). For our purposes, this means that in order to stop an \(e^{-}\) of energy \(T_{max}\), we must apply a potential difference of \(V = \frac{T_{max}}{-1~e}\). This is the stopping potential.</span></p>
+			<p>Another important observation from these experiments was the unexpected result that electrons appeared to be ejected instantaneously, regardless of light intensity. Instead of increased intensity of light resulting in the ejection of higher energy electrons, instead it would result in the ejection of <em>more</em> electrons, whose energy distribution does not change.</p>
+			<h3>Changing the light's frequency</h3>
+			<p>What happens if we decide to change the color of the light, leaving all else (i.e. the intensity) the same? Two important things change at once: the shape of the curve, and the energy distribution of the emitted electrons.</p>
+			<p>From these observations we can draw the important conclusion that the energy distribution of the emitted electrons is in some way related to the frequency of the incident light. Most importantly of all, we will notice that the stopping potential changes. For some given material, let's plot how the stopping potential varies with the frequency of incident light:</p>
+			<figure>
+				<img src="../fig/5-3.png" alt="Fig. 5.3">
+			</figure>
+			<p>Notice there is a special frequency \(f_0\) below which <em>no</em> photoelectric effect will occur in that material. If we were to find these plots for multiple materials, we would make two critical observations: the frequency \(f_0\) is material-dependent, and the slope of the line tracing the stopping potential is universal. That is, the slope of said line is the same for every material. </p>
+		</section>
+		<section>
+			<h2>Discrepencies with classical mechanics</h2>
+			<p>All of the observations we've made so far regarding the photoelectric effect have a major problem: they are in conflict with the predictions of classical mechanics. Firstly, classical mechanics predicts there should be no such stopping potential. Second, there should be no dependence on the light's frequency. And last, the emission of electrons ought to not be instantaneous. How can we resolve these discrepencies?</p>
+			<p>In 1905, Einstein proposed an explanation during his so-called "miracle year":<label for="phys-3316-lec-05-sn-02" class="margin-toggle sidenote-number"></label><input type="checkbox" id="phys-3316-lec-05-sn-02" class="margin-toggle"/><span class="sidenote">During this year, Einstein would develop theories explaining the photoelectric effect, special relativity, and Brownian motion.</span></p>
+			<p>
+				1. Light of frequency \(f\) consists of discrete packets, called <em>quanta</em><label for="phys-3316-lec-05-sn-03" class="margin-toggle sidenote-number"></label><input type="checkbox" id="phys-3316-lec-05-sn-03" class="margin-toggle"/><span class="sidenote">Singular <em>quantum</em></span>, containing a discrete amount of energy \(E\). The amount of energy depends on frequency: \(E = E(f)\).
+			</p>
+			<p>
+				2. A quantum of light is either absorbed or emitted — all or nothing. Fractions of quanta are forbidden.
+			</p>
+			<p>
+				3. When a quantum of light is absorbed, all of its energy must go to a single electron.
+			</p>
+			<p>This explanation implies an import conclusion: light has particle character. We would go on to name the quantum of light the <em>photon</em>.</p>
+		</section>
+	</article>
+
+	<div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://riscj.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//riscj.disqus.com/count.js" async></script>
+	</body>
+</html>
