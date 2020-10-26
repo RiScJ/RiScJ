@@ -30,9 +30,23 @@
 	<body onload="ready()">
 	<article>
 		<h1>Lecture 2</h1>
-		<p class="subtitle"></p>
+		<p class="subtitle">Double Well Potential & Quantum Zeno Effect</p>
 		<section>
-			<h2></h2>
+		<p>Imagine we have a particle in a double well potential. We could in theory be interested in any properties of the particle, but let us say all we want to know is whether the particle is in the “left” well or the “right” well: </p>
+		<figure>
+			<img src="../fig/2-1.png" alt="Fig. 2.1">
+		</figure>
+		<p>We've labeled the left and right sides using an interesting notation. We will come back to this later, but for now, you can read this as representing the “state” of the particle — i.e., the left state or the right state.</p>
+		<p>In the above figure, we can see that our particle is in the left state: \(\ket{L}\). Remember, we are working only for the sake of example right now. In quantum mechanics, we can make a prediction about which state the particle will be in based on its wavefunction. For now, lets presume it looks something like \(\cos\omega t~\ket{L}+\sin\omega t~\ket{R}\). This may seem mostly unmotivated — do notice, however, that the sine and cosine functions are orthogonal, just like our left and right states.</p>
+		<p>We can call these coefficients \(\alpha\) and \(\beta\) for brevity, giving us an expression of the form \(\alpha\ket{L}+\beta\ket{R}\). We use the “square”<label for="phys-3316-lec-05-sn-01" class="margin-toggle sidenote-number"></label><input type="checkbox" id="phys-3316-lec-02-sn-01" class="margin-toggle"/><span class="sidenote">Although here our coefficients happen to be real, they are in general complex. This will lead to us defining the square as the <em>norm</em> squared, and later as the product of the number with its complex conjugate, i.e. \(\psi^*\psi\).</span> of these coefficients to determine the relative probabilities of the particle being in either of our possible states. Notice here that by taking the squares, we have constrained our coefficients to a relationship such that their sum is always one. This has a neat interpretation of a form similar to “the particle has to be in one state or the other”. This is a statement we can always make with perfect certainty. If we measure the particle, we will <em>always</em> measure it to be in either the left or right well.</p>
+		</section>
+		<section>
+			<h2>Quantum Zeno Effect</h2>
+			<p>If we make a measurement of our system, leave for some amount of time, return, and take another measurement, the probabilistic nature of quantum mechanics means that our ability to guess which state the system will be in is not very good. However, as we shorten the time between measurements, something interesting happens. Because our system can only be measured to be in one of two states, and not anywhere between, one can imagine it taking some amount of time for the particle’s state to transition from one to another. If we make repeated measurements quickly enough, we can somewhat suppress this, leading to an effective “pinning” of the particle in a single state:</p>
+			<figure>
+				<img src="../fig/2-2.png" alt="Fig. 2.2">
+			</figure>
+			<p>In the above figure, each arrow corresponds to a measurement being made. The label above the arrow is the state we measure our particle to be in. Notice the long train of \(|L\rangle\) measurements—when we measure quickly, the probability of the particle being in a certain state is much higher, effectively pinning it there. However, low probability is not zero probability, and eventually we will measure the particle to be in a different state. These observations are known as the <em>quantum Zeno effect</em>.</p>
 		</section>
 	</article>
 
