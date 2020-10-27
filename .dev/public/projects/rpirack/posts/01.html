@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<div class="sidenav">
+		<a href="../../../index.html">Home &nbsp;&nbsp;<i class = "fa fa-home"></i></a>
+		<a href="../../../articles.html">Articles &nbsp;&nbsp;<i class = "fa fa-newspaper-o"></i></a>
+		<a href="../../../notes.html">Notes &nbsp;&nbsp; &nbsp;&nbsp;<i class = "fa fa-book"></i></a>
+		<a href="../../../projects.html">Projects &nbsp;&nbsp;<i class = "fa fa-flask"></i></a>
+		<a href="../../../about.html">About &nbsp;&nbsp;&nbsp;<i class = "fa fa-info-circle"></i></a>
+	</div>
+	<div class="topnav">
+		<a href="../../../index.html"><i class = "fa fa-home"></i></a>
+		<a href="../../../articles.html"><i class = "fa fa-newspaper-o"></i></a>
+		<a href="../../../notes.html"><i class = "fa fa-book"></i></a>
+		<a href="../../../projects.html"><i class = "fa fa-flask"></i></a>
+		<a href="../../../about.html"><i class = "fa fa-info-circle"></i></a>
+		<hr>
+	</div>
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>PXE booting a Raspberry Pi 4</title>
+		<link rel="stylesheet" href="../../../tufte.css">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+	</head>
+
+	<body onload="ready()">
+	<article>
+		<h1>PXE booting a Raspberry Pi 4</h1>
+		<p class="subtitle">October 26th, 2020</p>
+		<section>
+			<p>When I originally ordered the first few Pi’s for the rack, I realized I had forgotten to get SD cards along with them. Not to worry though, because there was another solution: PXE. PXE is a technology which allows us to boot a machine over the network. In principle, the process is simple: the machine on startup utlizes some sort of low-level firmware to attempt to boot from various media, usually an HDD or SSD. In our case, this would be the SD card. If one isn’t found, then we send a request to the network for a bootloader. If we have a machine on the network listening for such requests, we can send it the necessary files.</p>
+			<p>Although I got PXE boot working a few weeks ago, it was not easy. I spent a lot of time reading various tutorials and documentation trying to solve the issues I was having. If you want to PXE boot your Raspberry Pi’s too, and are having similar struggles, read on—hopefully this post will have some useful information for you.</p>
+			<p>The last point of note: the information here is written for a Raspberry Pi 4, specifically because that is what I have. If you have an earlier version, you’ll most likely have to find another resource. Sorry!</p>
+		</section>
+		<section>
+			<h2>Requirements</h2>
+			<p>If you want to do this, you’ll need the following:</p>
+			<p>* At least one Raspberry Pi 4</p>
+			<p>* A network switch, or available ports on your router—PXE uses ethernet</p>
+			<p>* A Linux machine to use as the server</p>
+			<p>* At least one microSD card, \(\geq16\) GB</p>
+			<p>* A display for the Pi</p>
+		</section>
+		<section>
+			<h2>Preparing the Raspberry Pi</h2>
+			<p>Download the latest version of Raspberry Pi OS, and write it to the SD card with your utility of choice (I use <code>dd</code>). Boot the Raspberry Pi with the card as you would normally. Go ahead and log in, we are going to make a few changes.</p>
+			<p>First, do a full upgrade:</p>
+<pre><code># apt-get update
+# apt-get upgrade</code></pre>
+			<p>as is good practice. This will save us a little bit of annoyance later, especially if you have a slow internet connection like I do.</p>
+			<p>Next, we will modify the bootloader. To do so, we first copy a template binary, convert back to text, make our modifications, rewrite to a binary, and then stage the bootloader to be flashed on the next reboot. Copy the binary (you can choose a different one if you want):</p>
+			<pre><code>$ cp /lib/firmware/raspberrypi/bootloader/stable/pieeprom-2020-09-03.bin pieeprom.bin
+$ rpi-eeprom-config pieeprom.bin > bootconf.txt</code></pre>
+			<p>You can now edit <code>bootconf.txt</code> to make any changes you need. For PXE booting, this means the <code>BOOT_ORDER</code> variable must contain the digit <code>2</code>. Usually I set this variable to <code>f241</code><label for="rpirack-post-01-sn-01" class="margin-toggle sidenote-number"></label><input type="checkbox" id="rpirack-post-01-sn-01" class="margin-toggle"/><span class="sidenote">The digits specified in this variable tell the bootloader which boot media to attempt, in which order. It is read from right to left. The options you can specify are: <code>0</code>, none; <code>1</code>, SD card; <code>2</code>, network; <code>3</code>, USB device; <code>4</code>, USB mass storage; and <code>f</code>, continuously retry. </span>, which means the Pi will first attempt to boot from an SD card, then from USB, and then from the network. If all of these fail, it will continuously retry in that order. In my opinion, it would be unwise to remove the digit <code>1</code> from the variable, as this would prevent booting from SD.</p>
+			<p>Once you’ve made your changes, we will use them to create a new binary:</p>
+			<pre><code>$ rpi-eeprom-config --out new.bin --config bootconf.txt pieeprom.bin</code></pre>
+			<p>And then flash the binary to the EEPROM:</p>
+			<pre><code># rpi-eeprom-update -d -f ./new.bin</code></pre>
+			<p>This won’t take effect until the next reboot. Before we do that, we may want to consider disabling future automatic updates of this bootloader, as this could override the changes we just made. To do so:</p>
+			<pre><code># systemctl mask rpi-eeprom-update</code></pre>
+			<p>Finally, now is a good time to grab the Pi’s MAC address.You can use <code>ip link</code> in order to do so. Go and make a DHCP reservation for this address. If you run DNS, give it an FQDN too.</p>
+			<p>Okay, we’re done! Go ahead and reboot:</p>
+			<pre><code># reboot</code></pre>
+			<p>When the login prompt comes back up, you can cut power and remove the SD card. </p>
+		</section>
+		<section>
+			<h2>Preparing the server</h2>
+			<p>First things first, I’m the realest; and that’s why I use Arch, btw, so if you use another distribution on your server you may need to change your package names accordingly.</p>
+			<p>We will need to install <code>dnsmasq</code>, NFS, and <code>kpartx</code>:</p>
+			<pre><code>$ yay -S dnsmasq multipath-tools-git nfs-utils</code></pre>
+			<p>Now we need to start building the filesystem. How exactly you choose to do this is up to you. Because of the way the filesystem on my server is structured, my setup involves a lot of bindmounts and linking, so I’ll just give an example structure here. Let’s make a place to store the Pi’s root filesystem and boot files:</p>
+			<pre><code># mkdir -p /srv/pxe/root/DEFAULT
+# mkdir -p /srv/pxe/boot/DEFAULT</code></pre>
+			<p>As you can guess, these are just to store the default Pi OS image. We will make a new subdirectory in each of these locations for each additional Pi we want to PXE boot. The boot subdirectory will require a special name, which we will address later. The root subdirectory name can be anything you want. I usually use the hostname, and recommend you do the same. For our example, we will assume our hostname is going to be <code>YOUR_PI_HOSTNAME</code>:</p>
+			<pre><code># mkdir /srv/pxe/root/YOUR_PI_HOSTNAME</code></pre>
+			<p>Now, we will need to image the updated SD card you just used. Before you do so, you may want to create a temporary working directory to keep things tidy:</p>
+			<pre><code>$ mkdir temp && cd temp</code></pre>
+			<p>When you have your SD card connected, you can use <code>lsblk</code> to check its device name. It will probably be something like <code>/dev/mmcblk0</code>. Make sure the device isn’t mounted, and use <code>dd</code> to image the card:</p>
+			<pre><code># dd if=/dev/mmcblk0 of=image.img status=progress</code></pre>
+			<p>Now, we make two temporary mountpoints—one for each partition in the disk image:</p>
+			<pre><code>$ mkdir root boot</code></pre>
+			<p>Now we use <code>kpartx</code> on our image to create loop devices, which we will then mount:</p>
+			<pre><code># kpartx -a -v image.img
+# mount /dev/mapper/loop0p2 root/
+# mount /dev/mapper/loop0p1 boot/</code></pre>
+<p>Then we will copy these files to our default locations:</p>
+<pre><code># cp -a root/* /srv/pxe/root/DEFAULT/
+# cp -a boot/* /srv/pxe/boot/DEFAULT/</code></pre>
+<p>While we are at it, you can copy the files from the default location to where we will be serving the new Pi from. You’ll have to do this each time you want to add a new Pi to PXE boot:</p>
+<pre><code># cp -a /srv/pxe/root/DEFAULT/* /srv/pxe/root/YOUR_PI_HOSTNAME/</code></pre>
+<p>Go ahead and edit <code>/srv/pxe/root/YOUR_PI_HOSTNAME/etc/hosts</code> and <code>/srv/pxe/root/YOUR_PI_HOSTNAME/etc/hostname</code> to reflect your chosen hostname.
+<p>We will have to replace a few files from the boot partition. Change directory:</p>
+<pre><code>$ cd /srv/nfs/boot/DEFAULT</code></pre>
+<p>Delete the required files, and download their replacements. I’ve mirrored the replacements from <code>Hexxeh/rpi-firmware</code>, if you’d prefer to get them from there.</p>
+<pre><code># rm start4.elf
+# rm fixup4.dat
+# wget https://git.riscj.dev/mirror/rpi-firmware/raw/branch/master/fixup4.dat
+# wget https://git.riscj.dev/mirror/rpi-firmware/raw/branch/master/start4.elf</code></pre>
+<p>Another addition we need to make here will be to add a file titled <code>ssh</code>. The Pi will see this, and enable SSH:</p>
+<pre><code># touch ssh</code></pre>
+<p>The last change we will need to make in the boot directory is to <code>cmdline.txt</code>. Your contents should look like the following:</p>
+<pre><code>console=serial0,115200 console=tty1 root=/dev/nfs nfsroot=SERVER_IP_ADDRESS:/srv/pxe/YOUR_PI_HOSTNAME/,vers=3,proto=tcp rw ip=dhcp rootwait elevator=deadline
+</code></pre>
+<p>It is really important that you have a DHCP reservation for your server, so that its IP does not change. I have tried to use FQDNs here, since I run DNS on my network, but it seems spotty. Feel free to try it and let me know if it works for you, though.</p>
+<p>Now we are going to add NFS exports, so that our clients can access the server’s filesystem. To do so, place something like the following into your <code>/etc/exports</code>:</p>
+<pre><code>/srv/pxe/boot                                  *(rw,sync,no_subtree_check,no_root_squash)
+/srv/pxe/root/YOUR_PI_HOSTNAME  YOUR_PI_HOSTNAME(rw,sync,no_subtree_check,no_root_squash)</code></pre>
+<p>If you don’t run DNS on your network, either replace the hostname with an IP address or add the IP to your <code>/etc/hosts</code> file.</p>
+<p>Start the relevent services and export the filesystems:</p>
+<pre><code># systemctl enable rpcbind
+# systemctl start rpcbind
+# systemctl enable nfs-server
+# systemctl start nfs-server
+# exportfs -arv</code></pre>
+<p>We are getting close, I promise.</p>
+<p>The last thing to do is to setup <code>dnsmasq</code>. You’ll need to know your broadcast address for this. Mine is <code>10.0.0.255</code>. Anywhere you see that, replace it with your own. If you do not know yours, you can find it with <code>ip addr</code> and looking at the <code>brd</code> entry. You will also need to know the name of the network interface you are using. The previous command shows you that too. Mine is <code>enp0s25</code>, so be sure to replace that with your own anywhere you see it. Place the following into <code>/etc/dnsmasq.conf</code>:</p>
+<pre><code>interface=enp0s25
+port=0
+dhcp-range=10.0.0.255,proxy
+log-dhcp
+enable-tftp
+tftp-root=/srv/pxe/boot
+pxe-service=0,"Raspberry Pi PXE"</code></pre>
+<p>Now, enable the service:</p>
+<pre><code># systemctl enable dnsmasq
+# systemctl start dnsmasq</code></pre>
+		</section>
+		<section>
+			<h2>Final steps</h2>
+			<p>Almost done! Now, remember how I said earlier that the boot subdirectory will need a special name? We will handle that here. First, we are going to start tailing the <code>dnsmasq</code> logs:</p>
+			<pre><code># journalctl -u dnsmasq -f</code></pre>
+			<p>Go over to your Pi. Make sure it has ethernet connected, and turn it on. Nothing should happen, so don’t bother waiting around. Go back to your server, and monitor the logs. Eventually, you should see a message of the form <code>file /srv/pxe/boot/########/FILE.EXT not found</code>. When you do, note the number I’ve marked in my example with octothorpes. <code>Ctrl+C</code> to stop tailing the logs, and go turn off the Pi. Then, create a new boot subdirectory with that number as its name:</p>
+			<pre><code># mkdir /srv/pxe/boot/########</code></pre>
+			<p>And copy the default files there:</p>
+			<pre><code># cp -a /srv/pxe/boot/DEFAULT/* /srv/pxe/boot/########/</code></pre>
+			<p>We will need to now modify <code>/srv/pxe/root/YOUR_PI_HOSTNAME/etc/fstab</code>, so the Pi knows to mount using NFS. It should contain something like the following:</p>
+		   <pre><code>proc                                     /proc proc defaults        0 0
+SERVER_IP_ADDRESS:/srv/pxe/boot/######## /boot nfs  defaults,vers=3 0 0</code></pre>
+			<p>Once you’re done, you can turn the Pi back on. If everything worked properly, your Pi should come up as expected. You’re done now, and can SSH into the Pi to do whatever you need to. Hurray!</p>
+			<p>I wrote all of this from memory, and it’s super possible I forgot something. If something isn’t working for you, let me know. It was a pain for me setting this up the first time, and I’d like to help try and alleviate some of that pain for others.</p>
+		</section>
+	</article>
+
+	<div id="disqus_thread"></div>
+<script>
+/**
+*  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+*  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables*/
+/*
+var disqus_config = function () {
+this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+};
+*/
+(function() { // DON'T EDIT BELOW THIS LINE
+var d = document, s = d.createElement('script');
+s.src = 'https://riscj.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<script id="dsq-count-scr" src="//riscj.disqus.com/count.js" async></script>
+	</body>
+</html>

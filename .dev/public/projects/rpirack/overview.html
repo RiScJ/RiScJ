@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<div class="sidenav">
+		<a href="../../index.html">Home &nbsp;&nbsp;<i class = "fa fa-home"></i></a>
+		<a href="../../articles.html">Articles &nbsp;&nbsp;<i class = "fa fa-newspaper-o"></i></a>
+		<a href="../../notes.html">Notes &nbsp;&nbsp; &nbsp;&nbsp;<i class = "fa fa-book"></i></a>
+		<a href="../../projects.html">Projects &nbsp;&nbsp;<i class = "fa fa-flask"></i></a>
+		<a href="../../about.html">About &nbsp;&nbsp;&nbsp;<i class = "fa fa-info-circle"></i></a>
+	</div>
+	<div class="topnav">
+		<a href="../../index.html"><i class = "fa fa-home"></i></a>
+		<a href="../../articles.html"><i class = "fa fa-newspaper-o"></i></a>
+		<a href="../../notes.html"><i class = "fa fa-book"></i></a>
+		<a href="../../projects.html"><i class = "fa fa-flask"></i></a>
+		<a href="../../about.html"><i class = "fa fa-info-circle"></i></a>
+		<hr>
+	</div>
+
+	<head>
+		<meta charset="utf-8"/>
+		<title>Raspberry Pi 2U Server Rack</title>
+		<link rel="stylesheet" href="../../tufte.css"/>
+		<link rel="stylesheet" href="../../latex.css"/>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+
+	<body>
+	<h1><a href="index.html">Raspberry Pi 2U Server Rack</a></h1>
+	<div class="project-menu">
+		<h2><a href="overview.html">Overview</a></h2>
+		<h2><a href="posts.html">Posts</a></h2>
+		<h2><a href="gallery.html">Gallery</a></h2>
+	</div>
+	<hr>
+	<article>
+		<h1>Overview</h1>
+		<section>
+			<p>The server rack is 2U tall—3.5 inches for the unacquainted—and 12 bays wide. The bays are large enough to fit PoE hats, if you want them. Eventually, I’ll add them to my setup as well, though I can’t currently justify the cost.</p>
+			<p>The rack itself is 3D-printed, and is made of 12 bay modules, and a bracket on either end. Each bay module consists of the bay itself, and a sliding tray. The sliding tray has holes for insertion of heat set threaded brass inserts, which we use for mounting the Pi. The front of the sliding tray has a male slot which fits into a 3D-printed handle. The handle itself is <em>also</em> composed of two parts. A backplane, and a front panel. A small OLED display panel fits between the two pieces, and is secured with two M2 bolts.</p>
+			<p>Currently, I have four Pi’s actively running in the rack. They run Pihole, Mayan EDMS, Gitea, and a custom wrapper for mpc+ncmpcpp. They are all booted over PXE, and their filesystems are mounted over NFS.</p>
+		</section>
+	</article>
+	</body>
+</html>
