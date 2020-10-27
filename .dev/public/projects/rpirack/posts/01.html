@@ -103,7 +103,7 @@ $ rpi-eeprom-config pieeprom.bin > bootconf.txt</code></pre>
 <p>Another addition we need to make here will be to add a file titled <code>ssh</code>. The Pi will see this, and enable SSH:</p>
 <pre><code># touch ssh</code></pre>
 <p>The last change we will need to make in the boot directory is to <code>cmdline.txt</code>. Your contents should look like the following:</p>
-<pre><code>console=serial0,115200 console=tty1 root=/dev/nfs nfsroot=SERVER_IP_ADDRESS:/srv/pxe/YOUR_PI_HOSTNAME/,vers=3,proto=tcp rw ip=dhcp rootwait elevator=deadline
+<pre><code>console=serial0,115200 console=tty1 root=/dev/nfs nfsroot=SERVER_IP_ADDRESS:/srv/pxe/root/YOUR_PI_HOSTNAME/,vers=3,proto=tcp rw ip=dhcp rootwait elevator=deadline
 </code></pre>
 <p>It is really important that you have a DHCP reservation for your server, so that its IP does not change. I have tried to use FQDNs here, since I run DNS on my network, but it seems spotty. Feel free to try it and let me know if it works for you, though.</p>
 <p>Now we are going to add NFS exports, so that our clients can access the server’s filesystem. To do so, place something like the following into your <code>/etc/exports</code>:</p>
